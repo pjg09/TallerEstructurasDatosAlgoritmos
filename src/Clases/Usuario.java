@@ -1,6 +1,6 @@
 public class Usuario {
 
-    // Constantes
+    // Constante
     private final byte longitudMinimaNombre = 3;
 
     // Atributos
@@ -17,7 +17,7 @@ public class Usuario {
 
     }
 
-    // Accesores
+    // Accesor
     public String getNombre () {
 
         return nombreUsuario;
@@ -48,43 +48,72 @@ public class Usuario {
 
     // Métodos
     public String seguir(Usuario usuario) {
+
         usuario.listaSeguidores.add(this);
         return "Ahora sigues a " + usuario.nombreUsuario;
+
     }
 
     public String postear(String mensaje) {
+
         Post post = new Post(mensaje);
+
         for (Usuario seguidor : listaSeguidores) {
+
             seguidor.muro.push(post);
+
         }
+
         return "Post publicado: " + mensaje;
+
     }
 
     @Override
     public String toString() {
+
         return muro.toString();
+
     }
 
     @Override
     public boolean equals(Object objeto) {
+
         if (!(objeto instanceof Usuario)) {
+
             return false;
+
         }
+
         Usuario other = (Usuario) objeto;
+
         if (listaSeguidores.size() != other.listaSeguidores.size()) {
+
             return false;
+
         }
+
         for (Usuario u : listaSeguidores) {
+
             if (!other.listaSeguidores.contains(u)) {
+
                 return false;
+
             }
+
         }
+
         for (Usuario u : other.listaSeguidores) {
+
             if (!listaSeguidores.contains(u)) {
+
                 return false;
+
             }
+
         }
+
         return true;
+
     }
 
 }
