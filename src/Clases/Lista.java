@@ -1,6 +1,5 @@
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-import java.util.NoSuchElementException;
 
 public class Lista implements Iterable<Usuario>{
 

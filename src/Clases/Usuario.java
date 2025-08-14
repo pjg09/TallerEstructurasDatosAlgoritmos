@@ -1,18 +1,52 @@
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-
 public class Usuario {
 
+    // Constantes
+    private final byte longitudMinimaNombre = 3;
+
+    // Atributos
     private String nombreUsuario;
     private Lista listaSeguidores;
     private Muro muro;
 
+    // Constructor
     public Usuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
+
+        setNombre(nombreUsuario);
         this.listaSeguidores = new Lista();
         this.muro = new Muro();
+
     }
 
+    // Accesores
+    public String getNombre () {
+
+        return nombreUsuario;
+
+    }
+
+    public void setNombre (String nombreUsuario) {
+
+        if (nombreUsuario == null || nombreUsuario.trim().isEmpty()) {
+
+            throw new IllegalArgumentException("Error: El nombre no puede estar vacío");
+
+        } else if (nombreUsuario.startsWith(" ")) {
+
+            throw new IllegalArgumentException("Error: El nombre no puede comenzar con un espacio en blanco");
+
+        } else if (nombreUsuario.length() < longitudMinimaNombre) {
+
+            throw new IllegalArgumentException("Error: El nombre de usuario debe contener más de " + longitudMinimaNombre + " caracteres");
+
+        } else {
+
+            this.nombreUsuario = nombreUsuario;
+
+        }
+
+    }
+
+    // Métodos
     public String seguir(Usuario usuario) {
         usuario.listaSeguidores.add(this);
         return "Ahora sigues a " + usuario.nombreUsuario;
